@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class= "text-center font-weight-light">Products</h1>
+<br>
+
+ <% @products.each_slice(4) do |products| %>
+    <div class='row'>
+      <%products.each do |product|%>
+        <div class= 'col-md-3 px-3 my-3'>
+            <div class="card">
+                <%= image_tag product.image, class: 'card-img-top', style: 'height: 190px;'%>
+                <div class="card-body">
+                  <h5 class="card-title"><%= product.name %></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><%=number_to_currency(product.price, unit: "$", delimiter: ".", precision: 0) %></h6>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= 'stock: ' + product.stock.to_s%></h6>
+                  <p class="card-text"><%= product.description %></p>
+                  <%= link_to 'Mostrar', product, class:"btn btn-primary btn-sm"%>
+                  <%= link_to 'Editar', edit_product_path(product),class:'btn btn-warning btn-sm' %>
+                  <%= link_to 'Eliminar', product, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger btn-sm' %>
+                </div>
+            </div>
+        </div>  
+      <% end %>
+    </div>
+<% end %>   
+
+
+<%= link_to 'Nuevo Producto', new_product_path, class: 'btn btn-info btn-lg btn-block' %>
+
+
+   
+      

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @product.name %></h2>
+
+
+<p>
+  <strong>Price:</strong>
+  <%=number_to_currency(@product.price, unit: "$", delimiter: ".", precision: 0)  %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%=@product.stock%>
+</p>
+
+
+
+<figure class="figure">
+  <%= image_tag  @product.image, class: 'figure-img img-fluid rounded', alt: 'texto alternativo' %>
+  <figcaption class="figure-caption"><%= @product.description %></figcaption>
+</figure>
+
+<div class='row'>
+  <div class='col'>
+    <%= button_to 'Editar', edit_product_path(@product,method:'get'), class: 'btn btn-primary', method: 'get' %> 
+  </div>
+  <div class='col'>
+    <%= button_to '<< Back', products_path, class: 'btn btn-success', method: 'get' %>
+  </div>
+</div>
